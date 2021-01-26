@@ -1,41 +1,54 @@
 const { json, response } = require('express');
+const { ObjectID } = require('mongodb');
 const Request = require('request');
+const postModel = require('../models/post-model');
+const { post } = require('../routes/xml');
 
-const getAllPost = (request, response) => {
+
+const getAllPost = async(request, response) => {
     try {
-        console.log("getAllPost : working");
+        const post = await postModel.find({});
+        response.send(post);
     } catch (error) {
         if (error != null) response.status(500).send({ error: error.message });
     }
 };
 
-const getSinglePost = (request, response) => {
+const getSinglePost = async(request, response) => {
     try {
-        console.log("getSinglePost : working");
+        console.log(  request.params.id);
+        const post = await postModel.findOne({_id: ObjectID(request.params.id)});
+        response.send(post);
     } catch (error) {
         if (error != null) response.status(500).send({ error: error.message });
     }
 };
 
-const createPost = (request, response) => {
+const createPost = async(request, response) => {
     try {
-        console.log("createPost : working");
+        const post = new postModel(request.body);
+        await post.save();
+        response.send(post);
     } catch (error) {
         if (error != null) response.status(500).send({ error: error.message });
     }
 };
 
-const updatePost = (request, response) => {
+const updatePost = async(request, response) => {
     try {
-        console.log("updatePost : working");
+        const post =  await postModel.findByIdAndUpdate(ObjectID(request.params.id), request.body)
+        await post.save()
+        response.send(post)
     } catch (error) {
         if (error != null) response.status(500).send({ error: error.message });
     }
 };
 
-const deletePost = (request, response) => {
+const deletePost = async(request, response) => {
     try {
-        console.log("deletePost : working");
+        const post = await postModel.findByIdAndDelete(request.params.id)
+        if (!post) res.status(404).send("No item found");
+        response.status(200).send()
     } catch (error) {
         if (error != null) response.status(500).send({ error: error.message });
     }

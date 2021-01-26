@@ -10,11 +10,11 @@ const {
  } = require('../controllers/post-controller');
 
 
- router.get('/posts', getAllPost);
- router.get('/post/:id', getSinglePost);
- router.post('/post', createPost);
- router.put('/post/:id', updatePost);
- router.delete('/post/:id', deletePost);
+ router.get('/getALl', getAllPost);
+ router.get('/getSingle/:id', getSinglePost);
+ router.post('/create', createPost);
+ router.patch('/update/:id', updatePost);
+ router.delete('/delete/:id', deletePost);
 
 
 
