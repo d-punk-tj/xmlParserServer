@@ -6,7 +6,7 @@ const {
  } = require('../controllers/xml-controller');
 
 
- router.get('/xml-parser', xmlparser);
+ router.get('/xml-parser/', xmlparser);
 
 
  module.exports = router;
