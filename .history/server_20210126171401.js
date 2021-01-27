@@ -8,7 +8,7 @@ const config = require('./config/dbconfig');
 
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4200;
 
 app.use(morgan('dev'));
 app.use(cors());

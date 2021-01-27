@@ -13,7 +13,7 @@ const {
  router.get('/getALl', getAllPost);
  router.get('/getSingle/:id', getSinglePost);
  router.post('/create', createPost);
- router.put('/update/:id', updatePost);
+ router.patch('/update/:id', updatePost);
  router.delete('/delete/:id', deletePost);
 
 

@@ -32,12 +32,11 @@ const createPost = async(request, response) => {
 };
 
 const updatePost = async(request, response) => {
-    console.log(request);
     try {
         const post =  await postModel.findByIdAndUpdate(ObjectID(request.params.id), request.body, {new: true}, function(err,doc){
             if(doc){
                 response.send(doc);
-                // console.log(doc);
+                console.log(doc);
             }
                
         })
